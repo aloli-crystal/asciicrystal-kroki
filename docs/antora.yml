@@ -1,0 +1,6 @@
+name: crystal-asciidoctor-kroki
+title: 'Crystal Asciidoctor Kroki'
+version: '0.10.2'
+nav:
+  - modules/ROOT/nav.adoc
+  - modules/fr/nav.adoc

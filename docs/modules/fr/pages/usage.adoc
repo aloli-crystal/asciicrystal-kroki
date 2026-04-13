@@ -1,0 +1,52 @@
+= Utilisation
+
+== API Bibliotheque
+
+[source,crystal]
+----
+require "asciidoctor_kroki"
+
+AsciidoctorKroki.register
+
+input = <<-ADOC
+= Mon Document
+
+[plantuml]
+\----
+Alice -> Bob: Bonjour
+Bob --> Alice: Salut !
+\----
+
+[mermaid]
+\----
+graph TD
+  A --> B
+  B --> C
+\----
+ADOC
+
+html = Asciidoctor.convert(input, {"safe" => "safe"})
+puts html
+----
+
+== Serveur Kroki Personnalise
+
+[source,asciidoc]
+----
+= Mon Document
+:kroki-server-url: https://mon-kroki.example.com
+:kroki-default-format: png
+
+[plantuml]
+\----
+Alice -> Bob: Bonjour
+\----
+----
+
+== Ligne de Commande
+
+[source,bash]
+----
+crystal-asciidoctor-kroki document.adoc
+crystal-asciidoctor-kroki -o sortie.html document.adoc
+----

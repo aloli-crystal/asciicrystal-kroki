@@ -1,0 +1,24 @@
+= Crystal Asciidoctor Kroki
+
+Extension Asciidoctor pour le rendu de diagrammes via l'API https://kroki.io[Kroki.io]. Portage Crystal de la gem Ruby https://github.com/Mogztter/asciidoctor-kroki[asciidoctor-kroki] (v0.10.2).
+
+== Fonctionnalites
+
+* Convertit les blocs de diagrammes en images via Kroki.io
+* 28 types de diagrammes supportes : plantuml, mermaid, ditaa, graphviz, dot, blockdiag, seqdiag, actdiag, nwdiag, packetdiag, rackdiag, c4plantuml, erd, nomnoml, svgbob, vega, vegalite, wavedrom, pikchr, d2, dbml, structurizr, excalidraw, wireviz, tikz, bytefield, bpmn
+* Support des blocs, macros de blocs et macros inline
+* URL du serveur Kroki configurable
+* Encodage deflate + base64url pour les requetes GET
+
+== Fonctionnement
+
+L'extension intercepte les blocs de diagrammes pendant le traitement AsciiDoc :
+
+1. Le texte source est compresse avec deflate
+2. Les octets compresses sont encodes en base64url
+3. Une URL Kroki est construite
+4. Le bloc est remplace par une balise `<img>`
+
+== Licence
+
+MIT

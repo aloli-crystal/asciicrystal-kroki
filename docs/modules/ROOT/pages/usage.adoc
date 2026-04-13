@@ -1,0 +1,73 @@
+= Usage
+
+== Library API
+
+[source,crystal]
+----
+require "asciidoctor_kroki"
+
+# Register the Kroki extension
+AsciidoctorKroki.register
+
+input = <<-ADOC
+= My Document
+
+[plantuml]
+\----
+Alice -> Bob: Hello
+Bob --> Alice: Hi!
+\----
+
+[mermaid]
+\----
+graph TD
+  A --> B
+  B --> C
+\----
+ADOC
+
+html = Asciidoctor.convert(input, {"safe" => "safe"})
+puts html
+# Diagram blocks are replaced with <img> tags pointing to Kroki.io
+----
+
+== Custom Kroki Server
+
+[source,asciidoc]
+----
+= My Document
+:kroki-server-url: https://my-kroki-instance.example.com
+:kroki-default-format: png
+
+[plantuml]
+\----
+Alice -> Bob: Hello
+\----
+----
+
+== Command Line
+
+[source,bash]
+----
+crystal-asciidoctor-kroki document.adoc
+# => Outputs HTML to stdout
+
+crystal-asciidoctor-kroki -o output.html document.adoc
+# => Writes HTML to output.html
+----
+
+=== Options
+
+[cols="1,3"]
+|===
+| Option | Description
+
+| `-o FILE`, `--out-file FILE`
+| Output HTML file (default: stdout)
+
+| `-v`, `--version`
+| Show version
+
+| `-h`, `--help`
+| Show help
+|===

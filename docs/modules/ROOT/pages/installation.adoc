@@ -1,0 +1,25 @@
+= Installation
+
+== As a Library
+
+Add to your `shard.yml`:
+
+[source,yaml]
+----
+dependencies:
+  crystal-asciidoctor-kroki:
+    github: aloli-crystal/crystal-asciidoctor-kroki
+    version: "~> 0.10"
+----
+
+Then run `shards install`.
+
+== CLI Binary
+
+[source,bash]
+----
+git clone https://github.com/aloli-crystal/crystal-asciidoctor-kroki.git
+cd crystal-asciidoctor-kroki
+shards build --release
+sudo cp bin/crystal-asciidoctor-kroki /usr/local/bin/
+----
