@@ -1,0 +1,27 @@
+name: crystal-asciidoctor-kroki
+version: 0.10.2
+
+description: |
+  Asciidoctor extension for rendering diagrams via the Kroki.io API.
+  Crystal port of the asciidoctor-kroki Ruby gem (v0.10.2).
+
+authors:
+  - Philippe Nenert <philippe@aloli.fr>
+
+license: MIT
+
+dependencies:
+  crystal-asciidoctor:
+    github: aloli-crystal/crystal-asciidoctor
+    version: "~> 2.0"
+
+development_dependencies:
+  ameba:
+    github: crystal-ameba/ameba
+    version: "~> 1.6"
+
+targets:
+  crystal-asciidoctor-kroki:
+    main: bin/crystal-asciidoctor-kroki
+
+crystal: ">= 1.19.0"

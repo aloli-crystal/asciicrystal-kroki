@@ -1,0 +1,163 @@
+= crystal-asciidoctor-kroki
+:toc: left
+:toclevels: 2
+
+Asciidoctor extension for rendering diagrams via the https://kroki.io[Kroki.io] API.
+Crystal port of the https://github.com/Mogztter/asciidoctor-kroki[asciidoctor-kroki] Ruby gem (v0.10.2).
+
+link:README.fr.adoc[Version francaise]
+
+== Features
+
+* Converts diagram blocks (plantuml, mermaid, ditaa, graphviz, etc.) to images via Kroki.io
+* 28 diagram types supported: plantuml, mermaid, ditaa, graphviz, dot, blockdiag, seqdiag, actdiag, nwdiag, packetdiag, rackdiag, c4plantuml, erd, nomnoml, svgbob, vega, vegalite, wavedrom, pikchr, d2, dbml, structurizr, excalidraw, wireviz, tikz, bytefield, bpmn
+* Block, block macro, and inline macro support
+* Configurable Kroki server URL (`:kroki-server-url:`)
+* Configurable default output format (`:kroki-default-format:`, default: svg)
+* Deflate + base64url encoding for GET requests (no server-side state)
+* **Library API** for use in Crystal applications
+* **CLI** for command-line usage
+
+== Installation
+
+=== As a library
+
+Add to your `shard.yml`:
+
+[source,yaml]
+----
+dependencies:
+  crystal-asciidoctor-kroki:
+    github: aloli-crystal/crystal-asciidoctor-kroki
+    version: "~> 0.10"
+----
+
+Then run `shards install`.
+
+=== CLI binary
+
+[source,bash]
+----
+git clone https://github.com/aloli-crystal/crystal-asciidoctor-kroki.git
+cd crystal-asciidoctor-kroki
+shards build --release
+sudo cp bin/crystal-asciidoctor-kroki /usr/local/bin/
+----
+
+== Usage
+
+=== Library API
+
+[source,crystal]
+----
+require "asciidoctor_kroki"
+
+# Register the Kroki extension
+AsciidoctorKroki.register
+
+input = <<-ADOC
+= My Document
+
+[plantuml]
+\----
+Alice -> Bob: Hello
+Bob --> Alice: Hi!
+\----
+
+[mermaid]
+\----
+graph TD
+  A --> B
+  B --> C
+\----
+ADOC
+
+html = Asciidoctor.convert(input, {"safe" => "safe"})
+puts html
+# Diagram blocks are replaced with <img> tags pointing to Kroki.io
+----
+
+=== Custom Kroki server
+
+[source,asciidoc]
+----
+= My Document
+:kroki-server-url: https://my-kroki-instance.example.com
+:kroki-default-format: png
+
+[plantuml]
+\----
+Alice -> Bob: Hello
+\----
+----
+
+=== Command line
+
+[source,bash]
+----
+crystal-asciidoctor-kroki document.adoc
+# => Outputs HTML to stdout
+
+crystal-asciidoctor-kroki -o output.html document.adoc
+# => Writes HTML to output.html
+----
+
+Options:
+
+[cols="1,3"]
+|===
+| Option | Description
+
+| `-o FILE`, `--out-file FILE`
+| Output HTML file (default: stdout)
+
+| `-v`, `--version`
+| Show version
+
+| `-h`, `--help`
+| Show help
+|===
+
+== How it works
+
+The extension intercepts diagram blocks (e.g., `[plantuml]`, `[mermaid]`) during AsciiDoc processing. For each diagram block:
+
+1. The diagram source text is deflate-compressed
+2. The compressed bytes are base64url-encoded (no padding)
+3. A Kroki URL is constructed: `{server}/{diagram_type}/{format}/{encoded}`
+4. The block is replaced with an `<img>` tag pointing to that URL
+
+When the HTML is rendered in a browser, the browser fetches the diagram image directly from the Kroki server. No intermediate files are created.
+
+== Versions
+
+[cols="2,2,2"]
+|===
+| | Version | Date
+
+| *Ruby asciidoctor-kroki (reference)*
+| 0.10.2
+| 2024-12-15
+
+| *Ruby asciidoctor (parser, via crystal-asciidoctor)*
+| 2.0.26
+| 2025-10-24
+
+| *crystal-asciidoctor-kroki*
+| 0.10.2
+| 2026-04-09
+|===
+
+== Development
+
+[source,bash]
+----
+git clone https://github.com/aloli-crystal/crystal-asciidoctor-kroki.git
+cd crystal-asciidoctor-kroki
+shards install
+crystal spec
+----
+
+== License
+
+MIT
