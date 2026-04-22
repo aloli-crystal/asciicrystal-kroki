@@ -1,5 +1,5 @@
 name: crystal-asciidoctor-kroki
-version: 0.10.2
+version: 0.10.2.1
 
 description: |
   Asciidoctor extension for rendering diagrams via the Kroki.io API.
