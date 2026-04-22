@@ -3,6 +3,14 @@
 :toc-title: Versions
 :toclevels: 2
 
+== v0.10.2.2 — 2026-04-22
+
+* Correction de la compilation du binaire `crystal-asciidoctor-kroki` :
+  ajout de `require "html"` dans `extension.cr`. Le code utilisait
+  `HTML.escape` sans importer le module `html` de la stdlib, ce qui
+  passait inaperçu car la CI ne lançait que les specs et le linter,
+  jamais un `shards build` complet de la cible binaire.
+
 == v0.10.2.1 — 2026-04-22
 
 * Ajout du linter *ameba* à la CI avec configuration `.ameba.yml` partagée alignée sur l'écosystème Crystal.

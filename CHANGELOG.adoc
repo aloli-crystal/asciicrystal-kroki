@@ -3,6 +3,14 @@
 :toc-title: Versions
 :toclevels: 2
 
+== v0.10.2.2 — 2026-04-22
+
+* Fix compilation of the `crystal-asciidoctor-kroki` binary: add
+  `require "html"` in `extension.cr`. The code was using `HTML.escape`
+  without importing the stdlib `html` module, which went unnoticed
+  because the CI only ran specs and the linter, never a full
+  `shards build` of the binary target.
+
 == v0.10.2.1 — 2026-04-22
 
 * Add the *ameba* linter to the CI pipeline with a shared `.ameba.yml` config aligned with the Crystal ecosystem.

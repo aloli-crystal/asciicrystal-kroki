@@ -1,4 +1,5 @@
 require "crystal-asciidoctor"
+require "html"
 require "./encoder"
 
 module AsciidoctorKroki
