@@ -41,7 +41,7 @@ Then run `shards install`.
 git clone https://github.com/aloli-crystal/crystal-asciidoctor-kroki.git
 cd crystal-asciidoctor-kroki
 shards build --release
-sudo cp bin/crystal-asciidoctor-kroki /usr/local/bin/
+ln -s "$PWD/bin/crystal-asciidoctor-kroki" ~/bin/
 ----
 
 == Usage
