@@ -3,6 +3,10 @@
 :toc-title: Versions
 :toclevels: 2
 
+== v0.10.2.5 — 2026-07-29
+
+* Déplacement de la source CLI de `bin/asciicrystal-kroki` vers `src/cli.cr` pour que `shards build` n'écrase plus la source par le binaire compilé ; `main` pointe désormais vers `src/cli.cr`.
+
 == v0.10.2.4 — 2026-07-28
 
 * Renommage du shard `crystal-asciidoctor-kroki` → `asciicrystal-kroki` (abandon du préfixe `crystal-`, `doctor` devient `crystal`).

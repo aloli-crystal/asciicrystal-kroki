@@ -1,5 +1,5 @@
 name: asciicrystal-kroki
-version: 0.10.2.4
+version: 0.10.2.5
 
 description: |
   Asciidoctor extension for rendering diagrams via the Kroki.io API.
@@ -22,6 +22,6 @@ development_dependencies:
 
 targets:
   asciicrystal-kroki:
-    main: bin/asciicrystal-kroki
+    main: src/cli.cr
 
 crystal: ">= 1.19.0"
