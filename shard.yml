@@ -1,5 +1,5 @@
-name: crystal-asciidoctor-kroki
-version: 0.10.2.3
+name: asciicrystal-kroki
+version: 0.10.2.4
 
 description: |
   Asciidoctor extension for rendering diagrams via the Kroki.io API.
@@ -11,9 +11,9 @@ authors:
 license: MIT
 
 dependencies:
-  crystal-asciidoctor:
-    github: aloli-crystal/crystal-asciidoctor
-    version: "~> 2.0"
+  asciicrystal:
+    github: aloli-crystal/asciicrystal
+    version: "~> 2.0.26.12"
 
 development_dependencies:
   ameba:
@@ -21,7 +21,7 @@ development_dependencies:
     version: "~> 1.6"
 
 targets:
-  crystal-asciidoctor-kroki:
-    main: bin/crystal-asciidoctor-kroki
+  asciicrystal-kroki:
+    main: bin/asciicrystal-kroki
 
 crystal: ">= 1.19.0"

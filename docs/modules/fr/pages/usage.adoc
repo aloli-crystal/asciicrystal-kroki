@@ -47,6 +47,6 @@ Alice -> Bob: Bonjour
 
 [source,bash]
 ----
-crystal-asciidoctor-kroki document.adoc
-crystal-asciidoctor-kroki -o sortie.html document.adoc
+asciicrystal-kroki document.adoc
+asciicrystal-kroki -o sortie.html document.adoc
 ----

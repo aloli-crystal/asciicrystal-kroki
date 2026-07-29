@@ -1,7 +1,7 @@
 require "compress/deflate"
 require "base64"
 
-module AsciidoctorKroki
+module AsciicrystalKroki
   # Encodes diagram source text for use in Kroki GET URLs.
   #
   # The encoding process is:

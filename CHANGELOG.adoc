@@ -3,6 +3,12 @@
 :toc-title: Versions
 :toclevels: 2
 
+== v0.10.2.4 — 2026-07-28
+
+* Rename the shard `crystal-asciidoctor-kroki` → `asciicrystal-kroki` (drop the `crystal-` prefix, turn `doctor` into `crystal`).
+* Rename the module `AsciidoctorKroki` → `AsciicrystalKroki`; the core namespace `Asciidoctor::` becomes `Asciicrystal::` via the `asciicrystal` dependency (formerly `crystal-asciidoctor`, `~> 2.0.26.12`).
+* Restore the CLI source `bin/asciicrystal-kroki` (a compiled binary had been committed over it) and untrack the built artifact. Ruby-provenance mentions of the `asciidoctor-kroki` gem are preserved.
+
 == v0.10.2.2 — 2026-04-22
 
 * Fix compilation of the `crystal-asciidoctor-kroki` binary: add

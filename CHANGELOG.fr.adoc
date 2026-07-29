@@ -3,6 +3,12 @@
 :toc-title: Versions
 :toclevels: 2
 
+== v0.10.2.4 — 2026-07-28
+
+* Renommage du shard `crystal-asciidoctor-kroki` → `asciicrystal-kroki` (abandon du préfixe `crystal-`, `doctor` devient `crystal`).
+* Renommage du module `AsciidoctorKroki` → `AsciicrystalKroki` ; le namespace du cœur `Asciidoctor::` devient `Asciicrystal::` via la dépendance `asciicrystal` (ex-`crystal-asciidoctor`, `~> 2.0.26.12`).
+* Restauration de la source CLI `bin/asciicrystal-kroki` (un binaire compilé avait été committé par-dessus) et retrait de l'artefact de build du suivi git. Les mentions de provenance de la gem Ruby `asciidoctor-kroki` sont conservées.
+
 == v0.10.2.2 — 2026-04-22
 
 * Correction de la compilation du binaire `crystal-asciidoctor-kroki` :

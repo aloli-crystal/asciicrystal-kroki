@@ -1,4 +1,4 @@
-= crystal-asciidoctor-kroki
+= asciicrystal-kroki
 :toc: left
 :toclevels: 2
 
@@ -27,8 +27,8 @@ Add to your `shard.yml`:
 [source,yaml]
 ----
 dependencies:
-  crystal-asciidoctor-kroki:
-    github: aloli-crystal/crystal-asciidoctor-kroki
+  asciicrystal-kroki:
+    github: aloli-crystal/asciicrystal-kroki
     version: "~> 0.10"
 ----
 
@@ -38,10 +38,10 @@ Then run `shards install`.
 
 [source,bash]
 ----
-git clone https://github.com/aloli-crystal/crystal-asciidoctor-kroki.git
-cd crystal-asciidoctor-kroki
+git clone https://github.com/aloli-crystal/asciicrystal-kroki.git
+cd asciicrystal-kroki
 shards build --release
-ln -s "$PWD/bin/crystal-asciidoctor-kroki" ~/bin/
+ln -s "$PWD/bin/asciicrystal-kroki" ~/bin/
 ----
 
 == Usage
@@ -95,10 +95,10 @@ Alice -> Bob: Hello
 
 [source,bash]
 ----
-crystal-asciidoctor-kroki document.adoc
+asciicrystal-kroki document.adoc
 # => Outputs HTML to stdout
 
-crystal-asciidoctor-kroki -o output.html document.adoc
+asciicrystal-kroki -o output.html document.adoc
 # => Writes HTML to output.html
 ----
 
@@ -139,11 +139,11 @@ When the HTML is rendered in a browser, the browser fetches the diagram image di
 | 0.10.2
 | 2024-12-15
 
-| *Ruby asciidoctor (parser, via crystal-asciidoctor)*
+| *Ruby asciidoctor (parser, via asciicrystal)*
 | 2.0.26
 | 2025-10-24
 
-| *crystal-asciidoctor-kroki*
+| *asciicrystal-kroki*
 | 0.10.2
 | 2026-04-09
 |===
@@ -152,8 +152,8 @@ When the HTML is rendered in a browser, the browser fetches the diagram image di
 
 [source,bash]
 ----
-git clone https://github.com/aloli-crystal/crystal-asciidoctor-kroki.git
-cd crystal-asciidoctor-kroki
+git clone https://github.com/aloli-crystal/asciicrystal-kroki.git
+cd asciicrystal-kroki
 shards install
 crystal spec
 ----

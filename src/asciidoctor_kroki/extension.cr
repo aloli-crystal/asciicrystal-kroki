@@ -1,8 +1,8 @@
-require "crystal-asciidoctor"
+require "asciicrystal"
 require "html"
 require "./encoder"
 
-module AsciidoctorKroki
+module AsciicrystalKroki
   # Supported diagram types recognized by Kroki.
   DIAGRAM_TYPES = %w[
     plantuml mermaid ditaa graphviz dot
@@ -25,21 +25,21 @@ module AsciidoctorKroki
   # TreeProcessor -- walks the AST after parsing and replaces diagram
   # blocks with pass blocks containing <img> tags pointing to Kroki.
   #
-  # This approach is used because the crystal-asciidoctor parser does
+  # This approach is used because the asciicrystal parser does
   # not yet invoke BlockProcessor extensions for custom block names.
   # The parser preserves the original style in attributes["style"]
   # (e.g., "plantuml") even when the block context is :listing.
   # ------------------------------------------------------------------
 
-  class KrokiTreeProcessor < Asciidoctor::Extensions::TreeProcessor
-    def process(document : Asciidoctor::Document) : Asciidoctor::Document?
+  class KrokiTreeProcessor < Asciicrystal::Extensions::TreeProcessor
+    def process(document : Asciicrystal::Document) : Asciicrystal::Document?
       process_blocks(document)
       document
     end
 
-    private def process_blocks(parent : Asciidoctor::AbstractBlock) : Nil
+    private def process_blocks(parent : Asciicrystal::AbstractBlock) : Nil
       parent.blocks.each_with_index do |block, i|
-        if block.is_a?(Asciidoctor::Block)
+        if block.is_a?(Asciicrystal::Block)
           diagram_type = block.attributes["style"]?
           if diagram_type && DIAGRAM_TYPES_SET.includes?(diagram_type)
             replacement = convert_diagram_block(block, parent, diagram_type)
@@ -54,7 +54,7 @@ module AsciidoctorKroki
       end
     end
 
-    private def convert_diagram_block(block : Asciidoctor::Block, parent : Asciidoctor::AbstractBlock, diagram_type : String) : Asciidoctor::Block?
+    private def convert_diagram_block(block : Asciicrystal::Block, parent : Asciicrystal::AbstractBlock, diagram_type : String) : Asciicrystal::Block?
       source = block.source
       return nil if source.strip.empty?
 
@@ -96,12 +96,12 @@ module AsciidoctorKroki
   # BlockMacroProcessor -- handles diagram_type::target[attributes]
   # ------------------------------------------------------------------
 
-  class KrokiBlockMacroProcessor < Asciidoctor::Extensions::BlockMacroProcessor
+  class KrokiBlockMacroProcessor < Asciicrystal::Extensions::BlockMacroProcessor
     def initialize(name : String)
       super(name)
     end
 
-    def process(parent : Asciidoctor::AbstractBlock, target : String, attributes : Hash(String, String)) : Asciidoctor::AbstractBlock | Asciidoctor::Inline | Nil
+    def process(parent : Asciicrystal::AbstractBlock, target : String, attributes : Hash(String, String)) : Asciicrystal::AbstractBlock | Asciicrystal::Inline | Nil
       diagram_type = @name.not_nil!
       doc = parent.document
       server_url = doc.attr("kroki-server-url") || DEFAULT_SERVER_URL
@@ -146,12 +146,12 @@ module AsciidoctorKroki
   # InlineMacroProcessor -- handles diagram_type:source[attributes]
   # ------------------------------------------------------------------
 
-  class KrokiInlineMacroProcessor < Asciidoctor::Extensions::InlineMacroProcessor
+  class KrokiInlineMacroProcessor < Asciicrystal::Extensions::InlineMacroProcessor
     def initialize(name : String)
       super(name)
     end
 
-    def process(parent : Asciidoctor::AbstractBlock, target : String, attributes : Hash(String, String)) : Asciidoctor::AbstractBlock | Asciidoctor::Inline | Nil
+    def process(parent : Asciicrystal::AbstractBlock, target : String, attributes : Hash(String, String)) : Asciicrystal::AbstractBlock | Asciicrystal::Inline | Nil
       diagram_type = @name.not_nil!
       doc = parent.document
       server_url = doc.attr("kroki-server-url") || DEFAULT_SERVER_URL
@@ -169,8 +169,8 @@ module AsciidoctorKroki
   # Extension Group -- registers all processors at once
   # ------------------------------------------------------------------
 
-  class KrokiExtensionGroup < Asciidoctor::Extensions::Group
-    def activate(registry : Asciidoctor::Extensions::Registry) : Nil
+  class KrokiExtensionGroup < Asciicrystal::Extensions::Group
+    def activate(registry : Asciicrystal::Extensions::Registry) : Nil
       # TreeProcessor for handling [plantuml]/[mermaid]/etc. delimited blocks
       registry.tree_processor(KrokiTreeProcessor.new)
 
@@ -184,11 +184,11 @@ module AsciidoctorKroki
 
   # Register the extension group globally.
   def self.register : Nil
-    Asciidoctor::Extensions.register(:kroki, KrokiExtensionGroup)
+    Asciicrystal::Extensions.register(:kroki, KrokiExtensionGroup)
   end
 
   # Unregister the extension group globally.
   def self.unregister : Nil
-    Asciidoctor::Extensions.unregister(:kroki)
+    Asciicrystal::Extensions.unregister(:kroki)
   end
 end

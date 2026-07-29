@@ -49,10 +49,10 @@ Alice -> Bob: Hello
 
 [source,bash]
 ----
-crystal-asciidoctor-kroki document.adoc
+asciicrystal-kroki document.adoc
 # => Outputs HTML to stdout
 
-crystal-asciidoctor-kroki -o output.html document.adoc
+asciicrystal-kroki -o output.html document.adoc
 # => Writes HTML to output.html
 ----
 

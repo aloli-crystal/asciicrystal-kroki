@@ -7,8 +7,8 @@ Ajouter dans votre `shard.yml` :
 [source,yaml]
 ----
 dependencies:
-  crystal-asciidoctor-kroki:
-    github: aloli-crystal/crystal-asciidoctor-kroki
+  asciicrystal-kroki:
+    github: aloli-crystal/asciicrystal-kroki
     version: "~> 0.10"
 ----
 
@@ -18,8 +18,8 @@ Puis executer `shards install`.
 
 [source,bash]
 ----
-git clone https://github.com/aloli-crystal/crystal-asciidoctor-kroki.git
-cd crystal-asciidoctor-kroki
+git clone https://github.com/aloli-crystal/asciicrystal-kroki.git
+cd asciicrystal-kroki
 shards build --release
-ln -s "$PWD/bin/crystal-asciidoctor-kroki" ~/bin/
+ln -s "$PWD/bin/asciicrystal-kroki" ~/bin/
 ----

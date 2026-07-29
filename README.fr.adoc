@@ -1,4 +1,4 @@
-= crystal-asciidoctor-kroki
+= asciicrystal-kroki
 :toc: left
 :toclevels: 2
 
@@ -27,8 +27,8 @@ Ajouter dans votre `shard.yml` :
 [source,yaml]
 ----
 dependencies:
-  crystal-asciidoctor-kroki:
-    github: aloli-crystal/crystal-asciidoctor-kroki
+  asciicrystal-kroki:
+    github: aloli-crystal/asciicrystal-kroki
     version: "~> 0.10"
 ----
 
@@ -38,10 +38,10 @@ Puis executer `shards install`.
 
 [source,bash]
 ----
-git clone https://github.com/aloli-crystal/crystal-asciidoctor-kroki.git
-cd crystal-asciidoctor-kroki
+git clone https://github.com/aloli-crystal/asciicrystal-kroki.git
+cd asciicrystal-kroki
 shards build --release
-ln -s "$PWD/bin/crystal-asciidoctor-kroki" ~/bin/
+ln -s "$PWD/bin/asciicrystal-kroki" ~/bin/
 ----
 
 == Utilisation
@@ -95,10 +95,10 @@ Alice -> Bob: Bonjour
 
 [source,bash]
 ----
-crystal-asciidoctor-kroki document.adoc
+asciicrystal-kroki document.adoc
 # => Affiche le HTML sur stdout
 
-crystal-asciidoctor-kroki -o sortie.html document.adoc
+asciicrystal-kroki -o sortie.html document.adoc
 # => Ecrit le HTML dans sortie.html
 ----
 
