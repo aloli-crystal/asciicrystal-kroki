@@ -1,1 +1,1 @@
-require "./asciidoctor_kroki"
+require "./asciicrystal_kroki"

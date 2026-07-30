@@ -1,2 +1,2 @@
 require "spec"
-require "../src/asciidoctor_kroki"
+require "../src/asciicrystal_kroki"

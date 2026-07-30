@@ -3,6 +3,10 @@
 :toc-title: Versions
 :toclevels: 2
 
+== v0.10.2.6 — 2026-07-29
+
+* Rename the internal source dir `src/asciidoctor_kroki/` → `src/asciicrystal_kroki/` (internal path; no API change). Ruby-gem provenance preserved.
+
 == v0.10.2.5 — 2026-07-29
 
 * Move the CLI source from `bin/asciicrystal-kroki` to `src/cli.cr` so `shards build` no longer overwrites the source with the compiled binary; `main` now points to `src/cli.cr`.

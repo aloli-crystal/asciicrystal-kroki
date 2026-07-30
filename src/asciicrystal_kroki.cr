@@ -1,5 +1,5 @@
-require "./asciidoctor_kroki/encoder"
-require "./asciidoctor_kroki/extension"
+require "./asciicrystal_kroki/encoder"
+require "./asciicrystal_kroki/extension"
 
 module AsciicrystalKroki
   # Lue au compile-time depuis `shard.yml` via le macro `read_file`.

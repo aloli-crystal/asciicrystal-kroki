@@ -1,5 +1,5 @@
 #!/usr/bin/env crystal
-require "./asciidoctor_kroki"
+require "./asciicrystal_kroki"
 require "option_parser"
 
 input_file = ""
