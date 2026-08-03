@@ -18,7 +18,7 @@ jobs:
       - name: Get current tracked version
         id: current
         run: |
-          version=$(grep -oP 'UPSTREAM_VERSION\s*=\s*"\K[^"]+' src/asciidoctor_kroki.cr)
+          version=$(grep -oP 'UPSTREAM_VERSION\s*=\s*"\K[^"]+' src/asciicrystal_kroki.cr)
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
       - name: Get latest upstream version
