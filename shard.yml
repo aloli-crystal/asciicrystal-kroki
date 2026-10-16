@@ -1,5 +1,5 @@
 name: asciicrystal-kroki
-version: 0.10.2.6
+version: 0.10.2.7
 
 description: |
   Asciidoctor extension for rendering diagrams via the Kroki.io API.
@@ -18,7 +18,7 @@ dependencies:
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba
-    version: "~> 1.6"
+    version: "~> 1.7"
 
 targets:
   asciicrystal-kroki:

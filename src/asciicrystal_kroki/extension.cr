@@ -56,7 +56,7 @@ module AsciicrystalKroki
 
     private def convert_diagram_block(block : Asciicrystal::Block, parent : Asciicrystal::AbstractBlock, diagram_type : String) : Asciicrystal::Block?
       source = block.source
-      return nil if source.strip.empty?
+      return if source.strip.empty?
 
       doc = block.document
       server_url = doc.attr("kroki-server-url") || DEFAULT_SERVER_URL
@@ -101,7 +101,7 @@ module AsciicrystalKroki
       super(name)
     end
 
-    def process(parent : Asciicrystal::AbstractBlock, target : String, attributes : Hash(String, String)) : Asciicrystal::AbstractBlock | Asciicrystal::Inline | Nil
+    def process(parent : Asciicrystal::AbstractBlock, target : String, attributes : Hash(String, String)) : Asciicrystal::AbstractBlock | Asciicrystal::Inline?
       diagram_type = @name.not_nil!
       doc = parent.document
       server_url = doc.attr("kroki-server-url") || DEFAULT_SERVER_URL
@@ -151,7 +151,7 @@ module AsciicrystalKroki
       super(name)
     end
 
-    def process(parent : Asciicrystal::AbstractBlock, target : String, attributes : Hash(String, String)) : Asciicrystal::AbstractBlock | Asciicrystal::Inline | Nil
+    def process(parent : Asciicrystal::AbstractBlock, target : String, attributes : Hash(String, String)) : Asciicrystal::AbstractBlock | Asciicrystal::Inline?
       diagram_type = @name.not_nil!
       doc = parent.document
       server_url = doc.attr("kroki-server-url") || DEFAULT_SERVER_URL

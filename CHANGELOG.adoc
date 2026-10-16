@@ -3,6 +3,10 @@
 :toc-title: Versions
 :toclevels: 2
 
+== v0.10.2.7 — 2026-10-16
+
+* ameba 1.7 and Crystal 1.22.0 in CI; new rules applied, no behaviour change.
+
 == v0.10.2.6 — 2026-07-29
 
 * Rename the internal source dir `src/asciidoctor_kroki/` → `src/asciicrystal_kroki/` (internal path; no API change). Ruby-gem provenance preserved.

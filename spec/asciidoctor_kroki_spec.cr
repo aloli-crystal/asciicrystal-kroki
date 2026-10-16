@@ -35,11 +35,11 @@ describe AsciicrystalKroki::Encoder do
 
     it "handles multi-line diagram source" do
       source = <<-PLANTUML
-      @startuml
-      Alice -> Bob: Authentication Request
-      Bob --> Alice: Authentication Response
-      @enduml
-      PLANTUML
+        @startuml
+        Alice -> Bob: Authentication Request
+        Bob --> Alice: Authentication Response
+        @enduml
+        PLANTUML
       encoded = AsciicrystalKroki::Encoder.encode(source)
       decoded = AsciicrystalKroki::Encoder.decode(encoded)
       decoded.should eq(source)
@@ -79,13 +79,13 @@ describe AsciicrystalKroki do
   describe "KrokiTreeProcessor" do
     it "converts a plantuml block to an img tag" do
       input = <<-ADOC
-      = Test Document
+        = Test Document
 
-      [plantuml]
-      ----
-      Alice -> Bob: Hello
-      ----
-      ADOC
+        [plantuml]
+        ----
+        Alice -> Bob: Hello
+        ----
+        ADOC
 
       html = AsciicrystalKroki.convert(input, {"safe" => "safe", "header_footer" => "false"})
       html.should contain("kroki.io/plantuml/svg/")
@@ -95,14 +95,14 @@ describe AsciicrystalKroki do
 
     it "converts a mermaid block to an img tag" do
       input = <<-ADOC
-      = Test
+        = Test
 
-      [mermaid]
-      ----
-      graph TD
-        A --> B
-      ----
-      ADOC
+        [mermaid]
+        ----
+        graph TD
+          A --> B
+        ----
+        ADOC
 
       html = AsciicrystalKroki.convert(input, {"safe" => "safe", "header_footer" => "false"})
       html.should contain("kroki.io/mermaid/svg/")
@@ -111,14 +111,14 @@ describe AsciicrystalKroki do
 
     it "respects kroki-server-url attribute" do
       input = <<-ADOC
-      = Test
-      :kroki-server-url: https://my-kroki.example.com
+        = Test
+        :kroki-server-url: https://my-kroki.example.com
 
-      [plantuml]
-      ----
-      A -> B
-      ----
-      ADOC
+        [plantuml]
+        ----
+        A -> B
+        ----
+        ADOC
 
       html = AsciicrystalKroki.convert(input, {"safe" => "safe", "header_footer" => "false"})
       html.should contain("my-kroki.example.com/plantuml/svg/")
@@ -126,14 +126,14 @@ describe AsciicrystalKroki do
 
     it "respects kroki-default-format attribute" do
       input = <<-ADOC
-      = Test
-      :kroki-default-format: png
+        = Test
+        :kroki-default-format: png
 
-      [plantuml]
-      ----
-      A -> B
-      ----
-      ADOC
+        [plantuml]
+        ----
+        A -> B
+        ----
+        ADOC
 
       html = AsciicrystalKroki.convert(input, {"safe" => "safe", "header_footer" => "false"})
       html.should contain("kroki.io/plantuml/png/")
@@ -141,16 +141,16 @@ describe AsciicrystalKroki do
 
     it "converts a ditaa block" do
       input = <<-ADOC
-      = Test
+        = Test
 
-      [ditaa]
-      ----
-      +--------+   +-------+
-      |        |-->|       |
-      |  cBLU  |   | cPNK  |
-      +--------+   +-------+
-      ----
-      ADOC
+        [ditaa]
+        ----
+        +--------+   +-------+
+        |        |-->|       |
+        |  cBLU  |   | cPNK  |
+        +--------+   +-------+
+        ----
+        ADOC
 
       html = AsciicrystalKroki.convert(input, {"safe" => "safe", "header_footer" => "false"})
       html.should contain("kroki.io/ditaa/svg/")
@@ -158,16 +158,16 @@ describe AsciicrystalKroki do
 
     it "converts a graphviz block" do
       input = <<-ADOC
-      = Test
+        = Test
 
-      [graphviz]
-      ----
-      digraph G {
-        A -> B
-        B -> C
-      }
-      ----
-      ADOC
+        [graphviz]
+        ----
+        digraph G {
+          A -> B
+          B -> C
+        }
+        ----
+        ADOC
 
       html = AsciicrystalKroki.convert(input, {"safe" => "safe", "header_footer" => "false"})
       html.should contain("kroki.io/graphviz/svg/")
@@ -175,13 +175,13 @@ describe AsciicrystalKroki do
 
     it "preserves non-diagram listing blocks" do
       input = <<-ADOC
-      = Test
+        = Test
 
-      [source,crystal]
-      ----
-      puts "Hello"
-      ----
-      ADOC
+        [source,crystal]
+        ----
+        puts "Hello"
+        ----
+        ADOC
 
       html = AsciicrystalKroki.convert(input, {"safe" => "safe", "header_footer" => "false"})
       html.should_not contain("kroki.io")
@@ -191,11 +191,11 @@ describe AsciicrystalKroki do
     it "encodes the diagram source in the URL" do
       source = "A -> B"
       input = <<-ADOC
-      [plantuml]
-      ----
-      #{source}
-      ----
-      ADOC
+        [plantuml]
+        ----
+        #{source}
+        ----
+        ADOC
 
       html = AsciicrystalKroki.convert(input, {"safe" => "safe", "header_footer" => "false"})
       expected_encoded = AsciicrystalKroki::Encoder.encode(source)
